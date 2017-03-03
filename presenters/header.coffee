@@ -9,11 +9,8 @@ module.exports = (application) ->
       HeaderTemplate self
 
     toggleSignInPopVisible: (event) ->
-      application.signInPopVisibleOnHeader.toggle()
+      application.signInPopVisible.toggle()
       event.stopPropagation()
 
     showVideoOverlay: ->
       application.overlay.showVideoOverlay()
-
-    popHiddenUnlessSignInPopVisible: ->
-      'hidden' unless application.signInPopVisibleOnHeader()
