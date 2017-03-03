@@ -1,0 +1,34 @@
+
+- remixButton = "https://cdn.gomix.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix-button.svg"
+
+- about = "https://gomix.com/about/"
+- blog = "https://medium.com/gomix"
+- help = "https://gomix.com/help/faqs/"
+- status = "http://status.gomix.com/"
+- support = "https://support.gomix.com/latest"
+- legal = "https://gomix.com/legal/"
+- editor = "https://gomix.com/#!/project/community"
+- remix = "https://gomix.com/#!/remix/community/6ce807b5-7214-49d7-aadd-f11803bc35fd"
+
+footer(role="contentinfo")
+
+  p
+    a(href=remix)
+      img(src=remixButton)
+  p
+    a(href=editor) View Code
+
+  hr
+
+  p
+    a(href=about data-track="footer → about") About
+  p
+    a(href=blog data-track="footer → blog") Blog
+  p
+    a(href=help data-track="footer → faq") FAQ
+  p
+    a(href=status data-track="footer → system status") System Status
+  p
+    a(href=support data-track="footer → support forum") Support Forum
+  p
+    a(href=legal data-track="footer → legal stuff") Legal Stuff
