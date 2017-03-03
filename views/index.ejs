@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Glitch</title>
+    <meta name="description" content="Explore Glitch - remix and create the app or bot of your dreams">
+    <link id="favicon" rel="icon" href="https://cdn.gomix.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Ffavicon.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cloud.webtype.com/css/3a8e55c6-b1f3-4659-99eb-125ae72bd084.css">
+    <link rel="stylesheet" type="text/css" href="<%= baseUrl %>/style.css">
+
+  </head>
+  <body>
+    <script>
+      var route = <%- JSON.stringify(route) %>;
+    </script>
+
+    <noscript>
+      <h1>
+        To use this app, please enable JavaScript
+      </h1>
+    </noscript>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="<%= baseUrl %>/client.js"></script>
+    <script src="//fast.wistia.com/embed/medias/vskja9agqj.jsonp" async></script>
+    <script src="//fast.wistia.com/assets/external/E-v1.js" async></script>
+
+  </body>
+</html>

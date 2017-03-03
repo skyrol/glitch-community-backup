@@ -1,0 +1,36 @@
+- Featured = require "../includes/featured"
+- Categories = require "../includes/categories"
+- ByFogcreek = require "../includes/by-fogcreek"
+- Footer = require "../includes/footer"
+
+- HeaderPresenter = require "../../presenters/header"
+- CategoryPresenter = require "../../presenters/category"
+- OverlayPresenter = require "../../presenters/overlay"
+- RecentProjectsPresenter = require "../../presenters/recent-projects"
+
+content
+  = HeaderPresenter(this).template
+  
+  main(role="main")
+
+    - # TODO ppl asking for help section (seen by all)
+  
+    - if @.user.cachedUser()
+      = RecentProjectsPresenter(this).template
+
+    = Featured(this)
+
+    - application = @
+    - @selectedCategories().forEach (category) ->
+      = CategoryPresenter(application, category).template
+
+    = Categories(this)
+    = ByFogcreek(this)
+
+  = Footer(this)
+
+  article
+
+    = OverlayPresenter(this).template
+
+  .beta beta
