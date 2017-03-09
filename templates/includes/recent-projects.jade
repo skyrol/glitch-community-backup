@@ -1,0 +1,26 @@
+- SignInPopPresenter = require "../../presenters/sign-in-pop"
+
+section.profile
+  h2 Your Projects
+  - # → link this when profile pages exist
+  .recent-projects
+    .profile-info
+      .user-avatar-container
+        .user-avatar(class=@userAvatarIsAnon style="background-color: #{@userAvatarColor}")
+          - if @userAvatarImage
+            img(src=@userAvatarImage)
+      a(href="https://glitch.com/edit")
+        button.cta-button Start Coding
+
+    article.projects
+      ul.projects-container
+        - @projects().forEach (project) ->
+          = project.template
+
+        - unless @userIsSignedIn
+          li
+            .project.anon-user-sign-up.opens-pop-over(click=@toggleSignInPopVisible)
+              p Access all your projects anywhere
+              button Sign in
+              span(class=@popHiddenUnlessSignInPopVisible)
+                = SignInPopPresenter(@.application).template

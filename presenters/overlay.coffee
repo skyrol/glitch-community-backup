@@ -19,10 +19,14 @@ module.exports = (application) ->
       application.overlayProject()?.domain
 
     projectId: ->
-      application.overlayProject()?.projectId
+      application.overlayProject()?.id
 
     projectUsers: ->
       application.overlayProject().users
+
+    projectAvatar: ->
+      if self.projectId()
+        "https://cdn.gomix.com/project-avatar/#{self.projectId()}.png"
 
     showLink: -> 
       "https://#{self.projectDomain()}.gomix.me" # change to glitch later
@@ -65,43 +69,45 @@ module.exports = (application) ->
       application.overlayTemplate "project"
       application.overlayProject project
       self.getProjectReadme project
-      history.replaceState(null, null, "?project=#{project.domain}")
+      history.replaceState(null, null, "~#{project.domain}")
 
     showVideoOverlay: ->
       application.overlayVisible true
       application.overlayTemplate "video"
 
-    showProjectOverlayIfPermalink: (queryString) ->
-      if queryString.project
-        application.overlayVisible true
-        application.overlayReadmeLoaded false
-        application.overlayTemplate 'project'
-        projectInfoUrl = "https://api.gomix.com/projects/#{queryString.project}"
-        axios.get projectInfoUrl,
-          cancelToken: source.token
-        .then (response) ->
-          console.log 'response', response
-          project = {
-            projectId: response.data.id
-            domain: response.data.domain
-          }
-          console.log project
-          self.showProjectOverlay project
-        .catch (error) ->
-          console.error "showProjectOverlayIfPermalink", error
-          self.showReadmeError()
-      
+    showProjectOverlayForProject: (projectDomain) ->
+      application.overlayVisible true
+      application.overlayReadmeLoaded false
+      application.overlayTemplate 'project'
+      projectInfoUrl = "https://api.gomix.com/projects/#{projectDomain}"
+      axios.get projectInfoUrl,
+        cancelToken: source.token
+      .then (response) ->
+        console.log 'response', response
+        project = {
+          id: response.data.id
+          domain: response.data.domain
+        }
+        console.log project
+        self.showProjectOverlay project
+      .catch (error) ->
+        console.error "showProjectOverlayIfPermalink", error
+        self.showReadmeError()
+
+    newRoute: ->
+      if application.searchQuery()
+        route + "?q=#{application.searchQuery()}"
+      else
+        route
+        
     hideOverlay: ->
       application.overlayVisible false
       source.cancel()
       source = CancelToken.source()
-
-      history.replaceState(null, null, route)
-
+      history.replaceState(null, null, self.newRoute())
+      
     getProjectReadme: (project) ->
-      console.log "👍", project
-      console.log 'self.projectId()', self.projectId()
-      readmeUrl = "https://api.gomix.com/projects/#{project.projectId}/readme" # change to glitch later
+      readmeUrl = "https://api.gomix.com/projects/#{self.projectId()}/readme" # change to glitch later
       axios.get readmeUrl,
         cancelToken: source.token
       .then (response) ->

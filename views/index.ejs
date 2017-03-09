@@ -2,11 +2,26 @@
 <html>
   <head>
     <title>Glitch</title>
-    <meta name="description" content="Explore Glitch - remix and create the app or bot of your dreams">
+    <meta name="description" content="The community that helps you build the app or bot of your dreams">
     <link id="favicon" rel="icon" href="https://cdn.gomix.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Ffavicon.ico" type="image/x-icon">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- facebook open graph tags -->
+    <meta name="og:type" content="website">
+    <meta name="og:url" content="https://glitch.com">
+    <meta name="og:title" content="Glitch">
+    <meta name="og:description" content="The community that helps you build the app or bot of your dreams">
+    <meta name="og:image" content="https://cdn.gomix.com/5cc4653d-3c18-4d86-8075-bb544be2f5d6%2Fsocial-card%402x.jpg">
+    <!-- twitter card tags (stacks with og: tags) -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@glitch">
+    <meta name="twitter:title" content="Glitch">
+    <meta name="twitter:description" content="The community that helps you build the app or bot of your dreams">
+    <meta name="twitter:image" content="https://cdn.gomix.com/5cc4653d-3c18-4d86-8075-bb544be2f5d6%2Fsocial-card%402x.jpg">
+    <meta name="twitter:image:alt" content="Glitch logo">
+    <meta name="twitter:url" content="https://glitch.com">
 
     <link rel="stylesheet" href="https://cloud.webtype.com/css/3a8e55c6-b1f3-4659-99eb-125ae72bd084.css">
     <link rel="stylesheet" type="text/css" href="<%= baseUrl %>/style.css">
@@ -15,6 +30,7 @@
   <body>
     <script>
       var route = <%- JSON.stringify(route) %>;
+      var baseUrl = <%- JSON.stringify(baseUrl) %>;
     </script>
 
     <noscript>
@@ -24,9 +40,8 @@
     </noscript>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="<%= baseUrl %>/client.js"></script>
+    <script src="<%= baseUrl %>/client.min.js"></script>
     <script src="//fast.wistia.com/embed/medias/vskja9agqj.jsonp" async></script>
     <script src="//fast.wistia.com/assets/external/E-v1.js" async></script>
-
   </body>
 </html>

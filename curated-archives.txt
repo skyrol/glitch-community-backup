@@ -1,3 +1,36 @@
+    [
+      name: 'Big Game Bingo'
+      domain: 'big-game-bingo'
+      projectId: '902cbaf0-e4e9-47c0-80b2-fe7ef583d679'
+      img: "https://cdn.gomix.com/6ce807b5-7214-49d7-aadd-f11803bc35fd%2Ffeatured-big-game-advert-bingo.png"
+      users: [
+          login: 'STRd6'
+          avatarUrl: 'https://avatars2.githubusercontent.com/u/18894?v=3&s=48'
+        ,
+          login: 'pketh'
+          avatarUrl: 'https://avatars2.githubusercontent.com/u/877072?v=3&s=48'
+      ]
+    ,
+      name: 'Quarterback Quiz'
+      domain: 'quarterback-quiz'
+      projectId: '56e665e5-e0a8-46c8-9476-8d9b731117dd'
+      img: "https://cdn.gomix.com/6ce807b5-7214-49d7-aadd-f11803bc35fd%2Ffeatured-quarterback-quiz.png"
+      users: [
+          login: 'garethx'
+          avatarUrl: 'https://avatars3.githubusercontent.com/u/1830035?v=3&s=48'
+      ]
+    ,
+      name: 'Super Bowl Squares'
+      domain: 'superbowl-squares'
+      projectId: '55dbb2a4-94d9-434f-9dcc-1432c975de1c'
+      img: "https://cdn.gomix.com/6ce807b5-7214-49d7-aadd-f11803bc35fd%2Ffeatured-superbowl-squares.png"
+      users: [
+          login: 'etamponi'
+          avatarUrl: 'https://avatars3.githubusercontent.com/u/578612?v=3&s=48'
+      ]
+  ]
+
+
 # projects that need better domain names
     ,
     
@@ -19,6 +52,19 @@
       ]
       categoryIds: [7,9]
     ,
+
+    ,
+      projectId: '0e7166c0-de2d-4965-8448-0e932e9f7efa'
+      editorUrl: 'impossible-salmon'
+      likes: 15
+      remixes: null
+      description: "A Slack slash command handler which will help you to quickly access and create data stored in Contentful"
+      users: [
+          name: 'stefanjudis'
+          avatar: 'https://avatars1.githubusercontent.com/u/962099?v=3&s=48'
+      ]
+      categoryId: [7]
+      partnerIds: [1]
 
 
 # dropped/niche projects

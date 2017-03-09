@@ -22,6 +22,8 @@ module.exports = (application) ->
     projects: ->
       filteredProjects = self.filterProjects()
       projectElements = filteredProjects.map (project) ->
+        unless project.id
+          project.id = project.projectId
         category = 
           color: undefined
         ProjectPresenter(application, project, category)
@@ -36,8 +38,8 @@ module.exports = (application) ->
     userAvatarIsAnon: ->
       'anon-user-avatar' if self.userIsAnon
 
-    hiddenUnlessUserIsAnon: ->
-      'hidden' unless self.userIsAnon
+    # hiddenUnlessUserIsAnon: ->
+    #   'hidden' unless self.userIsAnon
   
     toggleSignInPopVisible: (event) ->
       application.signInPopVisibleOnRecentProjects.toggle()
@@ -45,3 +47,5 @@ module.exports = (application) ->
 
     popHiddenUnlessSignInPopVisible: ->
       'hidden' unless application.signInPopVisibleOnRecentProjects()
+
+# application.user.cachedUser()

@@ -5,7 +5,7 @@ ANON_AVATAR = "https://cdn.gomix.com/f6949da2-781d-4fd5-81e6-1fdd56350165%2Fanon
 module.exports = (application) ->
   
   self = 
-    
+
     cachedUser: ->
       if localStorage.cachedUser
         JSON.parse(localStorage.cachedUser)
@@ -20,7 +20,13 @@ module.exports = (application) ->
       self.cachedUser().color
 
     avatarImage: ->
-      self.cachedUser().avatarUrl
+      self.cachedUser()?.avatarUrl
+
+    userName: ->
+      self.cachedUser().login
+
+    # fullName: ->
+    #   self.cachedUser().name
 
     userRecentProjectIds: ->
       recentFiles = self.cachedUser().recentFiles
@@ -38,6 +44,10 @@ module.exports = (application) ->
       .catch (error) ->
         console.error "recentProjects", error
 
+#     getUser: ->
+      # userId = self.cachedUser().id
+#        axios.get "https://api.gomix.com/users/#{userId}"
+
     normalizeProject: (projectFromAPI) ->
       project =
         name: projectFromAPI.domain
@@ -51,11 +61,11 @@ module.exports = (application) ->
       users = []
       usersInProjectFromAPI.forEach (user) ->
         users.push
-            name: user.name
-            avatar: user.avatarUrl or ANON_AVATAR
+            login: user.login
+            avatarUrl: user.avatarUrl or ANON_AVATAR
             color: user.color
       return users
-        
+
   if localStorage.cachedUser
     self.getUserRecentProjects()
 
