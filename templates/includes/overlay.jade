@@ -7,25 +7,27 @@ span
 
     dialog.overlay(click=@stopPropagation class=@hiddenUnlessProject)
       section.pop-over-info
+        img.avatar(src=@projectAvatar)
         .overlay-title= @projectDomain
       section.pop-over-actions.has-buttons
         a.button-link.show-app-link(href=@showLink onclick=@overlayButtonClickHandler data-track="overlay → show" data-track-label=@projectName)
           .button.show-app
             img(src=showIcon)
-            span Show
+            span Show App
         a.button-link.project-link(href=@editorLink onclick=@overlayButtonClickHandler data-track="overlay → view code" data-track-label=@projectName)
           .button View Code
         a.button-link.remix-link(href=@remixLink onclick=@overlayButtonClickHandler data-track="overlay → remix" data-track-label=@projectName)
           .button.cta-button Remix your own
 
       section.pop-over-actions.markdown-container(class=@warningIfReadmeError)
+        - #console.log "🐒", @projectAvatar()
+        - ##img(src=@projectAvatar)
         .project-users
           .users
-
             - if @projectUsers()
               - @projectUsers().forEach (user) ->
-                .user(title=user.name data-tooltip=user.name data-tooltip-left=true)
-                  img(width=30 height=30 src=user.avatar)
+                .user(title=user.login data-tooltip=user.login data-tooltip-left=true)
+                  img(width=30 height=30 src=user.avatarUrl style="background-color:#{user.color}")
             - else
               .user(title="Glitch team" data-tooltip="Glitch team" data-tooltip-left=true)
                 img(width=30 height=30 src=defaultAvatar)

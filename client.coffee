@@ -2,51 +2,75 @@
 # by express browserify middleware using the
 # coffeeify transform
 
-console.log '🚒🚒🚒🚒'
-
-
-application = require './application'
+application = require './application.coffee'
 qs = require 'querystringify'
 queryString = qs.parse window.location.search
-normalizeSlashes = require 'normalize-slashes'
+# todo: replace normalizeSlashes
+# normalizeSlashes = require 'normalize-slashes'
 
 IndexTemplate = require "./templates/pages/index"
-
 CategoryPage = require "./presenters/category-page"
+Search = require "./presenters/search"
+errorPageTemplate = require "./templates/pages/error-page"
 
-normalizedRoute = normalizeSlashes route
+
+console.log "route route is", route
+# normalizedRoute = normalizeSlashes route
+normalizedRoute = route.replace(/^\/|\/$/g, "")
 console.log "route is #{normalizedRoute}"
 console.log "query strings are", queryString
 console.log "application is", application
-
-# temp:
 console.log "🌈 isSignedIn", application.user.isSignedIn()
 
-# client-side routing
-
+# client-side routing:
 Promise.resolve()
 .then ->
-  if normalizedRoute is "login/github"
-    normalizedRoute = ""
-    application.loginWithOAuthCode queryString.code, "github"
+  if normalizedRoute.startsWith "login/"
+    application.login normalizedRoute.substring("login/".length), queryString.code
+    .then ->
+      history.replaceState null, null, "#{baseUrl}/"
+      normalizedRoute = ""
 .then ->
   index = IndexTemplate application
+  errorPage = errorPageTemplate application
+  application.user.getUserRecentProjects()
   
   if normalizedRoute is ""
     document.body.appendChild index
-    application.overlay.showProjectOverlayIfPermalink queryString
 
   else if application.isCategoryUrl(normalizedRoute)
     category = application.getCategoryFromUrl normalizedRoute
     categoryPage = CategoryPage(application, category).template()
     document.body.appendChild categoryPage
+    document.title = category.name
 
-# else if first char is @
-  # profile pages
+  else if application.isProjectUrl(normalizedRoute)
+    projectDomain = application.removeFirstCharacter normalizedRoute
+    document.body.appendChild index
+    application.overlay.showProjectOverlayForProject projectDomain
+
+  # else if application.isUserProfileUrl(normalizedRoute)
+  #   document.body.append '🙋 hello im a @profile page'
+
+  else if application.isSearchUrl(normalizedRoute, queryString)
+    application.searchQuery queryString.q
+    searchPage = Search(application).template()
+    document.body.appendChild searchPage
+    document.title = queryString.q
+
+  else
+    document.body.appendChild errorPage
+    document.title = "👻 Page not found"
 
 # document.addEventListener "keydown", (event) ->
 #   application.closeAllPopOvers event
 
+# application.tracking.init event
+
 document.addEventListener "click", (event) ->
-  # application.tracking.init event
-  application.closeAllPopOvers()
+  globalclick event
+document.addEventListener "touchstart", (event) ->
+  globalclick event  
+globalclick = (event) ->
+  unless $(event.target).closest('.pop-over, .opens-pop-over, .overlay').length
+    application.closeAllPopOvers()

@@ -1,0 +1,18 @@
+#!/bin/bash
+set -ex
+
+hamlet -m jade -d templates -r "require('hamlet.coffee')"
+
+browserify -t coffeeify --debug --extension=".coffee" client.coffee | \
+  exorcist public/client.js.map > public/client.js
+
+# comment uglify out in dev for faster build times
+(
+  cd public
+  uglifyjs --in-source-map client.js.map --source-map client.min.js.map \
+    --output client.min.js client.js
+)
+
+stylus --use autoprefixer-stylus --sourcemap-inline --compress public/style.styl -o public/style.css
+
+coffee server.coffee

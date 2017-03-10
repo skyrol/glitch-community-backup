@@ -7,34 +7,57 @@ tracking = require "./tracking"
 user = require "./user"
 
 Overlay = require "./presenters/overlay"
+Search = require "./presenters/search"
 
 self = 
 
+  # overlays
   overlayVisible: Observable false
   overlayTemplate: Observable "" # video, project
   overlayProject: Observable {}
+  overlayProjectAvatarUrl: Observable ""
   overlayReadme: Observable ""
   overlayReadmeLoaded: Observable false
   overlayReadmeError: Observable false
 
-  userRecentProjectsVisible: Observable false
+  # users
   userRecentProjects: Observable []
+
+  # pop overs
+  signInPopVisibleOnHeader: Observable false
+  signInPopVisibleOnRecentProjects: Observable false
   
-  signInPopVisible: Observable false
+  # search
+  searchQuery: Observable ""
+  searchResultsUsers: Observable []
+  searchResultsUsersLoaded: Observable false
+  searchResultsProjects: Observable []
+  searchResultsProjectsLoaded: Observable false
+
   
+  normalizedBaseUrl: ->
+    urlLength = baseUrl.length
+    lastCharacter = baseUrl.charAt(urlLength-1)
+    if baseUrl is ""
+      return "/"
+    else if lastCharacter is not "/"
+      return baseUrl + "/"
+    else
+      return baseUrl
+  
+  closeAllPopOvers: ->
+    self.signInPopVisibleOnHeader false
+    self.signInPopVisibleOnRecentProjects false
+
   showProjectOverlay: (project) ->
     self.overlay.showProjectOverlay project
-
-  closeAllPopOvers: ->
-    self.signInPopVisible false
   
   featuredProjects: ->
     _.shuffle curated.featured()
 
   categories: ->
     homepageCategories = _.filter curated.categories(), (category) ->
-      if category.listedOnHomepage
-        category
+      category
     _.shuffle homepageCategories
 
   projectsInCategory: (categoryId) ->
@@ -80,22 +103,43 @@ self =
     catch
       console.warn "Could not save to localStorage. (localStorage is disabled in private Safari windows)"
       
-  loginWithOAuthCode: (code, provider) ->
-    authURL = "authenticate/"
+  login: (provider, code) ->
+    console.log provider, code
+    authURL = "/authenticate/"
     if provider == "facebook"
       callbackURL = "https://gomix.com/community-test/login/facebook"
-      authURL = "auth/facebook/callback?callbackURL=#{callbackURL}&code="
+      authURL = "/auth/facebook/callback?callbackURL=#{callbackURL}&code="
     self.api().post "#{authURL}#{code}"
     .then (response) ->
-      console.log "USER", response.data
+      console.log "LOGGED IN!", response.data
       cachedUser = self.user.cachedUser() ? {}
-      Object.assign cachedUser, cachedUser, response.data
-      self.storeLocal "cachedUser", cachedUser
-      history.replaceState(null, null, baseUrl)
+      Object.assign cachedUser, response.data
+      self.storeLocal 'cachedUser', cachedUser
+
+  removeFirstCharacter: (string) ->
+    # ex: ~cool to cool
+    firstCharacterPosition = 1
+    end = string.length
+    string.substring(firstCharacterPosition, end)
+
+  isProjectUrl: (url) ->
+    if url.charAt(0) is "~"
+      true
+
+  isUserProfileUrl: (url) ->
+    if url.charAt(0) is "@"
+      true
+
+  isSearchUrl: (url, queryString) ->
+    queryStringKeys = _.keys queryString # ['q', 'blah']
+    if (url is 'search') and (_.contains queryStringKeys, 'q')
+      true
+      
 
 self.overlay = Overlay self
 self.tracking = tracking self
 self.user = user self
+self.search = Search self
 
 global.communityApp = self
 
