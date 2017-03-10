@@ -28,17 +28,12 @@ module.exports = (application) ->
     # fullName: ->
     #   self.cachedUser().name
 
-    userRecentProjectIds: ->
-      recentFiles = self.cachedUser().recentFiles
-      recentFiles.map (recent) ->
-        recent.projectId
-
     getUserRecentProjects: ->
-      userRecentProjectIds = self.userRecentProjectIds().toString()
-      projectInfoUrl = "https://api.gomix.com/projects/byIds?ids=#{userRecentProjectIds}"
-      axios.get projectInfoUrl
+      if !self.cachedUser()
+        return
+      application.api().get "/boot"
       .then (response) ->
-        projects = response.data.map (project) ->
+        projects = response.data.projects.map (project) ->
           self.normalizeProject project
         application.userRecentProjects projects
       .catch (error) ->
@@ -65,8 +60,5 @@ module.exports = (application) ->
             avatarUrl: user.avatarUrl or ANON_AVATAR
             color: user.color
       return users
-
-  if localStorage.cachedUser
-    self.getUserRecentProjects()
 
   return self
