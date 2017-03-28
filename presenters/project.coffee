@@ -26,3 +26,6 @@ module.exports = (application, project, category) ->
       else
         application.showProjectOverlay project
 
+    buttonCtaIfEdit: ->
+      if project.isRecentProject
+        "button-cta"
