@@ -10,15 +10,19 @@ module.exports = (application, project, category) ->
     template: ->
       ProjectTemplate self
 
-    # isProjectRecentProject
-
-    showProjectOverlayOrEdit: (project) ->
-      # condition here based on isProjectRecentProject
-      application.showProjectOverlay project
-
-    hiddenUnlessProjectUsers: ->
-      console.log "🤖", project
-      'hidden' unless project.users
+    projectLink: ->
+      if project.isRecentProject
+        self.editorLink()
+      else
+        "/~#{project.domain}"
       
-    hiddenIfProjectUsers: ->
-      'hidden' if project.users
+    editorLink: ->
+      "https://glitch.com/edit/#!/project/#{project.domain}"
+      
+    showProject: (project) ->
+      event.preventDefault()
+      if project.isRecentProject
+        window.location.href = self.editorLink()
+      else
+        application.showProjectOverlay project
+

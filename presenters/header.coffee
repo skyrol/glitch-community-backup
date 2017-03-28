@@ -4,7 +4,7 @@ HeaderTemplate = require "../templates/includes/header"
 
 module.exports = (application) ->
 
-  console.log "🚑", baseUrl
+  console.log "💁", baseUrl
   self = 
     application: application
     baseUrl: application.normalizedBaseUrl()
