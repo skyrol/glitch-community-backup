@@ -3,7 +3,7 @@
 
 section.profile
   h2 Your Projects
-  .recent-projects
+  .recent-projects(style="background-image: url(#{@userCoverImage}); background-color: #{@userCoverColor}")
     .profile-info
       .user-avatar-container
         .user-avatar(class=@userAvatarIsAnon style="background-color: #{@userAvatarColor}")

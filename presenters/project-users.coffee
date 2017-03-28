@@ -6,7 +6,6 @@ module.exports = (application, project) ->
   self =
 
     users: ->
-      console.log 'projf', project.users
       project.users
   
     template: ->

@@ -10,6 +10,9 @@ module.exports = (application) ->
     application: application
     userAvatarColor: application.user.avatarColor()
     userAvatarImage: application.user.avatarImage()
+    userCoverColor: application.user.coverColor()
+    userCoverImage: application.user.coverImage()
+
     userIsAnon: application.user.isAnon()
     userIsSignedIn: application.user.isSignedIn()
 
@@ -51,5 +54,4 @@ module.exports = (application) ->
 
     hiddenIfUserRecentProjects: ->
       'hidden' if application.userRecentProjects().length
-      
-# application.user.cachedUser()
+    

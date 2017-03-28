@@ -1,9 +1,8 @@
 - ProjectUsersPresenter = require "../../presenters/project-users"
 
-
 - defaultAvatar = "https://cdn.gomix.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2FdefaultAvatar%402x.png"
 
-section.features
+section.featured-projects
 
   h2 Featured Apps
   ul
@@ -11,12 +10,11 @@ section.features
     - @featuredProjects().forEach (project) ->
 
       li
-      
         = ProjectUsersPresenter(@, project).template
 
         - showProjectOverlay = -> application.showProjectOverlay project
-        .featured-container(click=showProjectOverlay data-track="featured project" data-track-label=project.name)
-          img.featured(width=30 height=30 src=project.img)
-
-          p.project-name= project.name
+        a(href="/~#{project.domain}")
+          .featured-container(click=showProjectOverlay data-track="featured project" data-track-label=project.name)
+            img.featured(width=30 height=30 src=project.img)
+            p.project-name= project.name
 

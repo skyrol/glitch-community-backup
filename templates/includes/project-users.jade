@@ -2,8 +2,7 @@
 - users = @users()
 
 
-li
-  - console.log "@", users
+span
   - if users
     .users
       - users.forEach (user) ->
@@ -23,4 +22,6 @@ li
     .users
       .user(title="Glitch team" data-tooltip="Glitch team" data-tooltip-left=true)
         img(width=30 height=30 src=glitchTeamAvatar)
+    .user-names
+      span.user-name Glitch Team
 
