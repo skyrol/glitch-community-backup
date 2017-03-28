@@ -20,10 +20,12 @@ module.exports = (application) ->
     #   SignInPopTemplate self
 
     projects: ->
+      console.log 'projects'
       filteredProjects = self.filterProjects()
       projectElements = filteredProjects.map (project) ->
         unless project.id
           project.id = project.projectId
+        project.recentProject = true
         category = 
           color: undefined
         ProjectPresenter(application, project, category)
