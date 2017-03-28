@@ -30,34 +30,31 @@ backgroundOpacity = 0.3
 module.exports =
 
   featured: -> [
-      name: 'Make a Messenger bot in minutes'
-      domain: 'messenger-bot'
-      id: 'ca73ace5-3fff-4b8f-81c5-c64452145271'
-      img: "https://cdn.gomix.com/6ce807b5-7214-49d7-aadd-f11803bc35fd%2Ffeatured-facebook-messenger.png"
+      name: 'Glitch Link Unfurling for Slack'
+      domain: 'solid-tugboat'
+      id: '834590ab-f27a-4fdb-b510-78986f4ba4bc'
+      img: "https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Ffeatured-slack-glitch-unfurling.png?1489695229677"
       users: [
-          login: 'fbsamples'
-          avatarUrl: 'https://avatars1.githubusercontent.com/u/1541324?v=3&s=48'
+          login: 'Glitch team'
+          avatarUrl: 'https://cdn.gomix.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fglitch-team-avatar.svg'
       ]
     ,
-      name: 'Start your own blog'
-      domain: 'ghost'
-      id: '9a2033a3-30d8-4658-93a8-3b5073c73237'
-      img: "https://cdn.gomix.com/6ce807b5-7214-49d7-aadd-f11803bc35fd%2FghostFeature.png"
+      name: 'Offline With Service Worker',
+      domain: 'offline-with-serviceworker',
+      id: 'ccd1f0e0-94cd-4ec4-8d37-9c31ac9edc24',
+      img: 'https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Ffeatured-service-workers.png?1490130108088'
       users: [
-          login: 'TryGhost'
-          avatarUrl: 'https://avatars3.githubusercontent.com/u/2178663?v=3&s=48'
+        login: 'kosamari',
+        avatarUrl: 'https://avatars3.githubusercontent.com/u/4581495?v=3&s=48'
       ]
     ,
-      name: 'Teach Alexa new skills'
-      domain: 'alexa-skill'
-      id: '681cc882-059d-4b05-a1f6-6cbc099cc79c'
-      img: "https://cdn.hyperdev.com/6ce807b5-7214-49d7-aadd-f11803bc35fd%2Ffeatured-alexa.png"
+      name: 'Slack Slash Command'
+      domain: 'slack-slash-command'
+      id: 'a9e55c25-bf40-4162-b1b5-dc33047c0cdc'
+      img: "https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Ffeatured-slack-slash-bot.svg?1489696106409"
       users: [
-          login: 'STRd6'
-          avatarUrl: 'https://avatars2.githubusercontent.com/u/18894?v=3&s=48'
-        ,
-          login: 'pketh'
-          avatarUrl: 'https://avatars2.githubusercontent.com/u/877072?v=3&s=48'
+          login: 'Slack'
+          avatarUrl: slackAvatar
       ]
   ]
 
@@ -639,15 +636,6 @@ module.exports =
       ]
       categoryIds: [1]
     ,
-      id: 'b7e334f3-109b-4b92-bead-d995cbba5950'
-      domain: 'fogbugz-js'
-      description: "A lightweight, promise-based wrapper around the FogBugz API"
-      users: [
-          login: 'bigdogwillfeed'
-          avatarUrl: 'https://avatars3.githubusercontent.com/u/4453639?v=3&s=48'
-      ]
-      categoryIds: [3]
-    ,
       id: 'd5d11c11-c239-4b16-ae23-def8e2687c25'
       domain: 'fogbugz-webhooks'
       description: "A simple server that handles incoming Webhooks delivered from FogBugz"
@@ -936,4 +924,22 @@ module.exports =
           login: 'garethx'
           avatarUrl: 'https://avatars3.githubusercontent.com/u/1830035?v=3&s=48'
       ]
+    ,
+      id: 'c6612fcf-459b-45b3-8ea7-7e1088946a24'
+      domain: 'choo-todo'
+      description: 'An implementation of a TodoMVC-like app using the new v5 Choo API! This is a good starter project if you\'re interested in learning about or trying out Choo.'
+      users: [
+        login: 'byronhulcher'
+        avatarUrl: 'https://avatars0.githubusercontent.com/u/2479295?v=3'
+      ]
+      categoryIds: [1]
+    ,
+      id: 'c8ac88a4-215c-4064-84c4-946e96b63ace'
+      domain: 'aframe'
+      description: 'A-Frame is a web framework for building virtual reality experiences. Make WebVR with HTML and Entity-Component. Works on Vive, Rift, desktop, mobile platforms!'
+      users: [
+        login: 'ngokevin'
+        avatarUrl: 'https://avatars1.githubusercontent.com/u/674727?v=3'
+      ]
+      categoryIds: [1]
   ]

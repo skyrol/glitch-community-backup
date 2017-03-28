@@ -1,3 +1,5 @@
+
+- Loader = require "./loader"
 - SignInPopPresenter = require "../../presenters/sign-in-pop"
 
 section.profile
@@ -10,9 +12,13 @@ section.profile
           - if @userAvatarImage
             img(src=@userAvatarImage)
       a(href="https://glitch.com/edit")
-        button.cta-button Start Coding
+        button.button-cta Edit Code
+
 
     article.projects
+      span(class=@hiddenIfUserRecentProjects)
+        = Loader(this)
+
       ul.projects-container
         - @projects().forEach (project) ->
           = project.template

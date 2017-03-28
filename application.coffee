@@ -19,6 +19,7 @@ self =
   overlayReadme: Observable ""
   overlayReadmeLoaded: Observable false
   overlayReadmeError: Observable false
+  currentUserIsInProject: Observable false
 
   # users
   userRecentProjects: Observable []
@@ -26,6 +27,7 @@ self =
   # pop overs
   signInPopVisibleOnHeader: Observable false
   signInPopVisibleOnRecentProjects: Observable false
+  userOptionsPopVisible: Observable false
   
   # search
   searchQuery: Observable ""
@@ -34,7 +36,6 @@ self =
   searchResultsProjects: Observable []
   searchResultsProjectsLoaded: Observable false
 
-  
   normalizedBaseUrl: ->
     urlLength = baseUrl.length
     lastCharacter = baseUrl.charAt(urlLength-1)
@@ -48,6 +49,7 @@ self =
   closeAllPopOvers: ->
     self.signInPopVisibleOnHeader false
     self.signInPopVisibleOnRecentProjects false
+    self.userOptionsPopVisible false
 
   showProjectOverlay: (project) ->
     self.overlay.showProjectOverlay project
@@ -107,7 +109,7 @@ self =
     console.log provider, code
     authURL = "/authenticate/"
     if provider == "facebook"
-      callbackURL = "https://gomix.com/community-test/login/facebook"
+      callbackURL = "https://glitch.com/login/facebook"
       authURL = "/auth/facebook/callback?callbackURL=#{callbackURL}&code="
     self.api().post "#{authURL}#{code}"
     .then (response) ->
