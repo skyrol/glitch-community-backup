@@ -8,7 +8,11 @@ shapes = "https://cdn.hyperdev.com/0a15009e-17ee-4915-bc29-5ba03bb09517%2Fshapes
 tetris = "https://cdn.hyperdev.com/6ce807b5-7214-49d7-aadd-f11803bc35fd%2Ftetris.svg"
 robot = "https://cdn.hyperdev.com/6ce807b5-7214-49d7-aadd-f11803bc35fd%2Frobot.svg"
 hardware = "https://cdn.gomix.com/6ce807b5-7214-49d7-aadd-f11803bc35fd%2Fhardware.svg"
-
+website = "https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2FfirstWebsiteCRT.svg?1492038242223"
+facebook = "https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2FfacebookThumb.png?1492531632789"
+microsoft = "https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2FmicrosoftLogo.png?1493296051489"
+twilio = "https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Ftwilio.png?1493735308539"
+wistia = "https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fwistia.png?1493735308565"
 slackAvatar = "https://cdn.gomix.com/6ce807b5-7214-49d7-aadd-f11803bc35fd%2Fslack.svg"
 # slackCover = ""
 superbowl = "https://cdn.gomix.com/6ce807b5-7214-49d7-aadd-f11803bc35fd%2FbigGameLogo.png"
@@ -30,30 +34,36 @@ backgroundOpacity = 0.3
 module.exports =
 
   featured: -> [
-      name: 'Glitch Link Unfurling for Slack'
-      domain: 'solid-tugboat'
-      id: '834590ab-f27a-4fdb-b510-78986f4ba4bc'
-      img: "https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Ffeatured-slack-glitch-unfurling.png?1489695229677"
-    ,
-      name: 'Offline With Service Worker',
-      domain: 'offline-with-serviceworker',
-      id: 'ccd1f0e0-94cd-4ec4-8d37-9c31ac9edc24',
-      img: 'https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Ffeatured-service-workers.png?1490130108088'
+      name: 'Find Tools for Social Progress'
+      domain: 'tech-forward-2'
+      id: '16d249c6-c928-4616-a548-3108bce18ead'
+      img: "https://cdn.gomix.com/6ce807b5-7214-49d7-aadd-f11803bc35fd%2FtechForwardFeatureAlt.png"
       users: [
-        login: 'kosamari',
-        avatarUrl: 'https://avatars3.githubusercontent.com/u/4581495?v=3&s=48'
-      ]
+          login: 'mattstauffer'
+          avatarUrl: 'https://avatars3.githubusercontent.com/u/151829?v=3&s=48'
+      ]       
     ,
-      name: 'Slack Slash Command'
-      domain: 'slack-slash-command'
-      id: 'a9e55c25-bf40-4162-b1b5-dc33047c0cdc'
-      img: "https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Ffeatured-slack-slash-bot.svg?1489696106409"
+      name: 'Make Your Own Slack Bot'
+      domain: 'slack-bot'
+      id: '095a1538-8c44-4b27-b0fe-936d194318c2'
+      img: "https://cdn.hyperdev.com/6ce807b5-7214-49d7-aadd-f11803bc35fd%2Ffeatured-slack-bot.png"
       users: [
-          login: 'Slack'
-          avatarUrl: slackAvatar
-      ]
-  ]
-
+          login: 'garethx'
+          avatarUrl: 'https://avatars3.githubusercontent.com/u/1830035?v=3&s=48'
+      ]   
+    ,
+      name: 'Teach Alexa New Skills'
+      domain: 'alexa-skill'
+      id: '681cc882-059d-4b05-a1f6-6cbc099cc79c'
+      img: "https://cdn.hyperdev.com/6ce807b5-7214-49d7-aadd-f11803bc35fd%2Ffeatured-alexa.png"
+      users: [
+          login: 'STRd6'
+          avatarUrl: 'https://avatars2.githubusercontent.com/u/18894?v=3&s=48'
+        ,
+          login: 'pketh'
+          avatarUrl: 'https://avatars2.githubusercontent.com/u/877072?v=3&s=48'    
+      ]   
+  ] 
 
   partners: -> [
       name: 'Slack'
@@ -78,11 +88,10 @@ module.exports =
 
   # TODO work w gareth to design/make a collection page. distinct from category page.
   # more like a blog post with interstitial photos and descriptions?
-  # ex 'digital art', 'black history month' collection
+  # ex 'black history month' collection
   # a more guided path from intro, tutorials, to building blocks?
   # https://docs.google.com/document/d/1G58e3FqUXqaXPRKwG5Y9w3hw5gbLrIc2p90mX5S-3hk/edit#
   # /collection/big-game urls?
-  # medium blog posts instead?
   collections: -> [
       name: 'Big Game Apps'
       url: 'big-game'
@@ -157,6 +166,51 @@ module.exports =
       description: "Connect your gadgets and gizmos to the world – or your kitchen."
       background: "rgba(48, 220, 166, #{backgroundOpacity})"
       id: 8
+    ,
+      name: 'First Websites'
+      url: 'websites'
+      img: website
+      color: 'rgb(255, 120, 100)'
+      description: "A look back at the sites where many people created their first web pages."
+      background: "rgba(255, 120, 100, #{backgroundOpacity})"
+      id: 9
+      categoryPageOnly: true
+    ,
+      name: 'Facebook'
+      url: 'facebook'
+      img: facebook
+      color: '#70a4d8'
+      description: "Kickstart creation of your own apps using Facebook developer APIs."
+      background: "rgba(112, 164, 216, #{backgroundOpacity})"
+      id: 10
+      categoryPageOnly: true
+    ,
+      name: 'Microsoft'
+      url: 'microsoft'
+      img: microsoft
+      color: '#70a4d8'
+      description: "Leverage Microsoft APIs, SDKs and open source projects to make your own apps."
+      background: "rgba(112, 164, 216, #{backgroundOpacity})"
+      id: 11
+      categoryPageOnly: true  
+    ,
+      name: 'Twilio'
+      url: 'twilio'
+      img: twilio
+      color: 'rgb(255, 120, 100)'
+      description: "Build apps that communicate with everyone in the world using Twilio's Voice & Video, Messaging, and Auth APIs."
+      background: "rgba(255, 120, 100, #{backgroundOpacity})"
+      id: 12
+      categoryPageOnly: true
+    ,
+      name: 'Wistia'
+      url: 'wistia'
+      img: wistia
+      color: '#70a4d8'
+      description: "Wistia's APIs allow you to easily upload, embed, and track videos within your own apps."
+      background: "rgba(112, 164, 216, #{backgroundOpacity})"
+      id: 13
+      categoryPageOnly: true    
   ]
 
   projects: -> [
@@ -168,45 +222,6 @@ module.exports =
         avatarUrl: 'https://avatars3.githubusercontent.com/u/578612?v=3&s=48'
       ]
       categoryIds: [2]
-    ,
-      id: '1400a3bd-f901-4883-8394-a38eeac0d1f0'
-      domain: 'space-program'
-      description: "Launch your spaceship into orbit. Don't die."
-      users: [
-        login: 'InPermutation'
-        avatarUrl: 'https://avatars0.githubusercontent.com/u/1096993?v=3&s=48'
-      ]
-      categoryIds: [2]
-    ,
-      id: 'e1a17ca2-9167-4695-ba19-e0d5c34d09bb'
-      domain: 'pong-solo'
-      description: "Play Pong against a brick wall; now even harder to beat!"
-      users: [
-        login: 'STRd6'
-        avatarUrl: 'https://avatars2.githubusercontent.com/u/18894?v=3&s=48'
-      ]
-      categoryIds: [2]
-    ,
-      id: '397d14ff-0309-4411-895a-fda9e935c44b'
-      domain: 'soundboard'
-      description: 'Click pictures, listen to sounds, celebrate'
-      users: [
-          login: 'STRd6'
-          avatarUrl: 'https://avatars2.githubusercontent.com/u/18894?v=3&s=48'
-        ,
-          login: 'pketh'
-          avatarUrl: 'https://avatars2.githubusercontent.com/u/877072?v=3&s=48'
-      ]
-      categoryIds: [2]
-    ,
-      id: 'bb648dc0-74b3-4571-8840-6bf49cf84e66'
-      domain: 'image-editor'
-      description: "A thing for making SVG images. Draw with it."
-      users: [
-          login: 'InPermutation'
-          avatarUrl: 'https://avatars0.githubusercontent.com/u/1096993?v=3&s=48'
-      ]
-      categoryIds: [6]
     ,
       id: '824edd48-c9bd-4aee-a3fb-561bb97344ed'
       domain: 'data-dashboard'
@@ -235,11 +250,6 @@ module.exports =
       id: '546c8e41-ca39-481c-837f-ea830661c315'
       domain: 'rest-api'
       description: "GET and POST RESTful API endpoints using Express"
-      categoryIds: [3]
-    ,
-      id: 'f7a5a47d-b266-4a86-b13d-09a1d2aaea2b'
-      domain: 'mongodb'
-      description: "Connect and add items to a MongoDB database"
       categoryIds: [3]
     ,
       id: '0d184ee3-fd8d-4b94-acf4-b4e686e57375'
@@ -295,15 +305,6 @@ module.exports =
       categoryIds: [7]
       parnterIds: [9]
     ,
-      id: '552a115a-c07e-4609-b196-4dbe8fdb449c'
-      domain: 'hello-coffee'
-      description: "Start your next project with CoffeeScript + Jade + Stylus with Autoprefixer"
-      users: [
-          login: 'pketh'
-          avatarUrl: 'https://avatars2.githubusercontent.com/u/877072?v=3&s=48'
-      ]
-      categoryIds: [1]
-    ,
       id: '19d39bfe-9d27-4cbb-8326-ad41d1cc61bc'
       domain: 'to-do'
       description: "A simple, minimalist Todo app"
@@ -343,16 +344,7 @@ module.exports =
           login: 'jude'
           avatarUrl: 'https://pbs.twimg.com/profile_images/627115681201430528/0rE2ZRqj.jpg'
       ]
-      categoryIds: [5]
-    ,
-      id: 'ebd2e0d7-2ee5-4d4f-9086-342bbbf22f35'
-      domain: 'flicker-swoop'
-      description: "Example implementation of a Lindenmayer system"
-      users: [
-          login: 'STRd6'
-          avatarUrl: 'https://avatars2.githubusercontent.com/u/18894?v=3&s=48'
-      ]
-      categoryIds: [6]
+      categoryIds: [5,11]
     ,
       id: '54b2142c-d885-42da-86ba-22213877039b'
       domain: 'trello-shopping-list'
@@ -381,15 +373,6 @@ module.exports =
       ]
       categoryIds: [1]
     ,
-      id: '4d787ffa-d62b-4907-91ef-e86c1e1e1335'
-      domain: 'hoodie'
-      description: "Starter project using Hoodie"
-      users: [
-          login: 'gr2m'
-          avatarUrl: 'https://avatars2.githubusercontent.com/u/39992?v=3&s=48'
-      ]
-      categoryIds: [1]
-    ,
       id: 'c4f87dae-fa3a-437e-9e13-fa79e98e3952'
       domain: 'font-awesome-export'
       description: "Creates the mouse cursor and image code for Font Awesome icons"
@@ -398,15 +381,6 @@ module.exports =
           avatarUrl: 'https://avatars2.githubusercontent.com/u/47636?v=3&s=48'
       ]
       categoryIds: [6]
-    ,
-      id: '5e80c868-d95c-4a76-b6a6-291d5d61a4c0'
-      domain: 'hipchat-addon'
-      description: "A fully functional HipChat add-on"
-      users: [
-          login: 'rmanalan'
-          avatarUrl: 'https://avatars2.githubusercontent.com/u/549?v=3&s=48'
-      ]
-      categoryIds: [1]
     ,
       id: '008c399a-3f86-45ad-8131-df3a14b0e7ed'
       domain: 'processing-js'
@@ -482,16 +456,7 @@ module.exports =
           login: 'fbsamples'
           avatarUrl: 'https://avatars1.githubusercontent.com/u/1541324?v=3&s=48'
       ]
-      categoryIds: [7]
-    ,
-      id: 'a4c42aef-7c70-484b-ab24-8c344063a7c8'
-      domain: 'chewy'
-      description: "Give Alexa the power of the Force with this Wookieepedia powered Skill"
-      users: [
-          login: 'stretchyboy'
-          avatarUrl: 'https://avatars1.githubusercontent.com/u/229326?v=3&s=48'
-      ]
-      categoryIds: [7]
+      categoryIds: [7,10]
     ,
       id: '68ea9bee-f345-4677-a916-f7c67004ae2d'
       domain: 'grunt-js'
@@ -529,11 +494,6 @@ module.exports =
           avatarUrl: 'https://avatars3.githubusercontent.com/u/537678?v=3&s=48'
       ]
       categoryIds: [6]
-    ,
-      id: '0539a08d-bcda-458e-8647-94813e4248b4'
-      domain: 'react-tutorial'
-      description: "React comment box tutorial example"
-      categoryIds: [1]
     ,
       id: 'fb2f9ebf-77b2-4f81-9f07-e5425f261f57'
       domain: 'firebase-quickstart'
@@ -594,11 +554,6 @@ module.exports =
       domain: 'drawing-game'
       description: "Draw in real-time with multiple other people, and see what they're drawing too"
       categoryIds: [2]
-    ,
-      id: 'd04c9a09-d45a-4aaa-8f33-a1e2772945d0'
-      domain: 'itunes-art'
-      description: "Get the logos and screenshots from any app in the Apple iOS App Store"
-      categoryIds: [5]
     ,
       id: '58fe13bd-0688-49f3-b562-c3b5817fc5d6'
       domain: 'ne-db'
@@ -694,11 +649,6 @@ module.exports =
       ]
       categoryIds: [2]
     ,
-      id: '48d9a081-8ac6-497d-bc28-d3a32df56834'
-      domain: 'blockspring'
-      description: "Use Blockspring to easily get data from third-party APIs"
-      categoryIds: [3]
-    ,
       id: '454c12bf-21a2-485d-ab64-975d05525c16'
       domain: 'nondescript-dog'
       description: "Play multiplayer Snake over websockets"
@@ -728,16 +678,6 @@ module.exports =
           avatarUrl: 'https://avatars2.githubusercontent.com/u/877072?v=3&s=48'
       ]
       categoryIds: [6]
-    ,
-      id: '1a511228-1f09-429c-a2d2-4a3e5ca7d07d'
-      domain: 'peek-at-posts'
-      description: "Slack slash command to peek at the last 3 posts on a WordPress site"
-      users: [
-          login: 'tharsheblows'
-          avatarUrl: 'https://avatars1.githubusercontent.com/u/1530368?v=3&s=48'
-      ]
-      categoryIds: [7]
-      parnterIds: [9]
     ,
       id: '12834ffd-d5ed-423a-b486-9f297f5cd04f'
       domain: 'botkit-slack'
@@ -878,7 +818,7 @@ module.exports =
           login: 'zitrusfrisch'
           avatarUrl: 'https://avatars3.githubusercontent.com/u/1192474?v=3&s=48'
       ]
-      categoryIds: [3,4]
+      categoryIds: [3,4,9]
     ,
       id: 'c39d16ef-bc2e-44ae-8df5-4293b248b243'
       domain: 'html-5-boilerplate'
@@ -911,7 +851,11 @@ module.exports =
       id: '9d99c4fd-2153-4d0e-b9a7-dcb9b46c9028'
       domain: 'dojo-bigscreen'
       description: "A big screen dashboard for your business using Trello, Weather Underground and StatusCake examples"
-      categoryIds: [3]
+      users: [
+          login: 'danroot'
+          avatarUrl: 'https://avatars3.githubusercontent.com/u/2205215?v=3&s=48'
+      ]    
+      categoryIds: [6]
     ,
       id: '7bb031da-8422-40b7-b9fb-bab494908c5d'
       domain: 'bitlytics'
@@ -923,7 +867,7 @@ module.exports =
     ,
       id: 'c6612fcf-459b-45b3-8ea7-7e1088946a24'
       domain: 'choo-todo'
-      description: 'An implementation of a TodoMVC-like app using the new v5 Choo API! This is a good starter project if you\'re interested in learning about or trying out Choo.'
+      description: 'An implementation of a TodoMVC-like app using the new v5 Choo API'
       users: [
         login: 'byronhulcher'
         avatarUrl: 'https://avatars0.githubusercontent.com/u/2479295?v=3'
@@ -932,10 +876,213 @@ module.exports =
     ,
       id: 'c8ac88a4-215c-4064-84c4-946e96b63ace'
       domain: 'aframe'
-      description: 'A-Frame is a web framework for building virtual reality experiences. Make WebVR with HTML and Entity-Component. Works on Vive, Rift, desktop, mobile platforms!'
+      description: 'A web framework for building VR experiences. Make WebVR with HTML and Entity-Component'
       users: [
         login: 'ngokevin'
         avatarUrl: 'https://avatars1.githubusercontent.com/u/674727?v=3'
       ]
       categoryIds: [1]
+    ,
+      id: 'cb02d9ae-61ed-4053-b465-d6e2e9656ac3'
+      domain: 'assets-lib'
+      description: 'Use relative paths to serve your assets on Glitch'
+      users: [
+          login: 'etamponi'
+          avatarUrl: 'https://avatars3.githubusercontent.com/u/578612?v=3'
+      ]
+      categoryIds: [1] 
+    ,
+      id: 'f2fa9e14-e052-49c3-8799-02229a096740'
+      domain: 'guardian'
+      description: 'A simple Guardian API client using server side rendering'
+      users: [
+        login: 'gidsg'
+        avatarUrl: 'https://avatars1.githubusercontent.com/u/1764158?v=3'
+      ]
+      categoryIds: [6,1]
+    ,
+      id: '3d15e4dc-9789-49b3-b7aa-59462d9889fd'
+      domain: '2factor-auth'
+      description: 'Two-Factor Authentication (2FA) demo written in Node.js with Nexmo Verify API'
+      users: [
+        login: 'girliemac'
+        avatarUrl: 'https://avatars1.githubusercontent.com/u/107763?v=3'
+      ]
+      categoryIds: [1,3]
+    ,
+      id: 'ccd1f0e0-94cd-4ec4-8d37-9c31ac9edc24'
+      domain: 'offline-with-serviceworker'
+      description: 'Make your application load instantly & work offline with ServiceWorker'
+      users: [
+        login: 'kosamari'
+        avatarUrl: 'https://avatars1.githubusercontent.com/u/4581495?v=3'
+      ]
+      categoryIds: [1,3]
+    ,
+      id: '206e612e-03aa-4908-b00d-12251a365b8d'
+      domain: 'glitchable-type'
+      description: 'It\'s just like your first blog, without the CGI-BIN'
+      categoryIds: [9]
+    ,
+      id: '2288e05f-9a49-470f-b907-22494e69cce1'
+      domain: 'glitchocities'
+      description: 'Today\'s cool Homestead'
+      categoryIds: [9]
+    ,
+      id: '8a04125b-a4b0-463c-a804-e333c4851040'
+      domain: 'neopets'
+      description: 'This is the place to see all the Glitchopets you own'
+      categoryIds: [9]
+    ,
+      id: 'bc3e04b5-4113-469c-81c5-e2ca1334b0a8'
+      domain: 'glitchspace'
+      description: 'GlitchSpace, it\'s kind of a Place for Friends!'
+      categoryIds: [9]
+    ,
+      id: 'd6f7f0c0-b2cf-4339-8249-d09d3db2cfa1'
+      domain: 'wordpress'
+      description: 'Forgive me father for I have blogged'
+      categoryIds: [9]
+     ,
+      id: 'de2514f1-269d-4043-b358-1be3612d4686'
+      domain: 'livejournal'
+      description: 'For the Emo kid inside all of us'
+      categoryIds: [9]     
+     ,
+      id: '371baed9-806f-4257-9b99-f0918b08c5df'
+      domain: 'the-first-website'
+      description: 'Where it all began'
+      categoryIds: [9]
+     ,
+      id: '1511c567-bd2e-4467-9bb9-9241a34ca5e8'
+      domain: 'retro-bootstrap'
+      description: 'A vintage Bootstrap 1.4.0 example template to tinker with'
+      categoryIds: [9] 
+     ,
+      id: 'e356b09a-8971-43d2-b7b4-f1390422e6f1'
+      domain: 'graph-api-webhooks'
+      description: 'A sample client for Facebook\'s Graph API Webhooks'
+      users: [
+          login: 'fbsamples'
+          avatarUrl: 'https://avatars1.githubusercontent.com/u/1541324?v=3&s=48'
+      ]    
+      categoryIds: [10]
+     ,
+      id: '4c08ac56-7e55-424e-9134-744a82fd8ee0'
+      domain: 'account-kit'
+      description: 'Add user auth with Account Kit'
+      users: [
+          login: 'tpai'
+          avatarUrl: 'https://avatars2.githubusercontent.com/u/579145?v=3&s=48'
+      ]      
+      categoryIds: [10]
+     ,
+      id: 'f83e1ac8-b75f-45e2-9ce3-4cf0dfc7656e'
+      domain: 'fb-live-teleprompter'
+      description: 'Live comments teleprompter'
+      users: [
+          login: 'fbsamples'
+          avatarUrl: 'https://avatars1.githubusercontent.com/u/1541324?v=3&s=48'
+      ]    
+      categoryIds: [10]
+     ,
+      id: 'a665875d-1aa9-4122-8ea1-4513c66da156'
+      domain: 'botkit-facebook'
+      description: 'Build a Facebook Messenger bot with Botkit and Botkit Studio'
+      users: [
+          login: 'howdyai'
+          avatarUrl: 'https://avatars1.githubusercontent.com/u/16260958?v=3&s=48'
+      ]    
+      categoryIds: [10]
+     ,
+      id: 'c942fe52-dcbc-43fc-ac80-5a66e388221a'
+      domain: 'bot-builder-skype'
+      description: 'An example Skype bot using Microsoft\'s Bot Builder SDK'    
+      categoryIds: [7,11] 
+     ,
+      id: 'c439638e-7365-4b17-98d2-0913fa44d81e'
+      domain: 'graph-connect'
+      description: 'A Microsoft Graph Connect sample project'    
+      categoryIds: [5,11]
+     ,
+      id: '8c68dea8-16a3-4e0d-8755-c9229208b84f'
+      domain: 'azure-storage'
+      description: 'Microsoft Azure Storage database list app'    
+      categoryIds: [5,11]   
+     ,
+      id: 'd03b8eaf-e8d5-4038-8cdd-96f88673cac8'
+      domain: 'tracery-mastodon-bot'
+      description: 'A starter Mastodon bot that generates random toots using Tracery'  
+      users: [
+          login: 'byronhulcher'
+          avatarUrl: 'https://avatars1.githubusercontent.com/u/2479295?v=3&s=48'
+      ]     
+      categoryIds: [7] 
+     ,
+      id: '0ddc2423-29f6-4e89-9d9f-8e911e949c15'
+      domain: 'pass-azure'
+      description: 'An example app implementing Azure OAuth with Passport.js'    
+      categoryIds: [5,11] 
+     ,
+      id: 'fd94eac0-7f39-48d7-85d4-87ae0d46b36a'
+      domain: 'wistia-webhooks-example'
+      description: 'Use Webhooks to hear about stuff when it happens in Wistia'  
+      users: [
+          login: 'mrdavidjcole'
+          avatarUrl: 'https://avatars1.githubusercontent.com/u/752729?v=3&s=48'
+      ]     
+      categoryIds: [13] 
+     ,
+      id: 'f6a79bb0-b834-4b0f-9d4f-5dbf068499bd'
+      domain: 'wistia-chapter-links'
+      description: 'Deeplink into a specific chapter within an embedded Wistia video'  
+      users: [
+          login: 'mrdavidjcole'
+          avatarUrl: 'https://avatars1.githubusercontent.com/u/752729?v=3&s=48'
+      ]     
+      categoryIds: [13]  
+     ,
+      id: 'c9bd27a5-9cbc-4592-8189-45847dfabcdb'
+      domain: 'twilio-sms'
+      description: 'Send SMS messages with Twilio'      
+      categoryIds: [12] 
+     ,
+      id: 'c7f4cd78-a43d-4129-b3f0-b53d3a9790a4'
+      domain: 'twilio-chat-demo-js'
+      description: 'IP Messaging API Demo Application for JavaScript'  
+      users: [
+          login: 'jennschiffer'
+          avatarUrl: 'https://avatars1.githubusercontent.com/u/341305?v=3&s=48'
+      ]     
+      categoryIds: [12]
+     ,
+      id: 'faf46029-79ef-4175-977c-b23659e7dd33'
+      domain: 'donejs-helloworld'
+      description: 'A DoneJS, done-serve and done-autorender starter project'  
+      users: [
+          login: 'chasenlehara'
+          avatarUrl: 'https://avatars1.githubusercontent.com/u/10070176?v=3&s=48'
+      ,
+          login: 'bmomberger-bitovi'
+          avatarUrl: 'https://avatars1.githubusercontent.com/u/18686722?v=3&s=48'
+      ]     
+      categoryIds: [1]   
+     ,
+      id: 'e7c41525-7315-4218-9002-918ef887aa1c'
+      domain: 'webpack-lazy-loading'
+      description: 'Demos Webpack by lazy loading a module on demand'  
+      users: [
+          login: 'TheLarkInn'
+          avatarUrl: 'https://avatars1.githubusercontent.com/u/3408176?v=3&s=48'
+      ]     
+      categoryIds: [1] 
+     ,
+      id: '9626bd34-22d2-4fe2-89ba-067450afc7f0'
+      domain: 'create-react-app-sample'
+      description: 'Create React apps with no build configuration'  
+      users: [
+          login: 'etamponi'
+          avatarUrl: 'https://avatars1.githubusercontent.com/u/578612?v=3&s=48'
+      ]     
+      categoryIds: [1]     
   ]
