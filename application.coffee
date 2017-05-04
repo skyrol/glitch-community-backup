@@ -3,7 +3,7 @@ _ = require 'underscore'
 axios = require 'axios'
 
 # curated
-curated = 
+curated =
   featured: require "./curated/featured"
   categories: require "./curated/categories"
   collections: require "./curated/collections"
@@ -18,7 +18,7 @@ user = require "./user"
 Overlay = require "./presenters/overlay"
 Search = require "./presenters/search"
 
-self = 
+self =
 
   # overlays
   overlayVisible: Observable false
@@ -37,7 +37,7 @@ self =
   signInPopVisibleOnHeader: Observable false
   signInPopVisibleOnRecentProjects: Observable false
   userOptionsPopVisible: Observable false
-  
+
   # search
   searchQuery: Observable ""
   searchResultsUsers: Observable []
@@ -54,7 +54,7 @@ self =
       return baseUrl + "/"
     else
       return baseUrl
-  
+
   closeAllPopOvers: ->
     self.signInPopVisibleOnHeader false
     self.signInPopVisibleOnRecentProjects false
@@ -63,7 +63,7 @@ self =
   showProjectOverlay: (project) ->
     event.preventDefault()
     self.overlay.showProjectOverlay project
-  
+
   featuredProjects: ->
     _.shuffle curated.featured
 
@@ -71,7 +71,7 @@ self =
     homepageCategories = _.filter curated.categories, (category) ->
       !category.categoryPageOnly
     _.shuffle homepageCategories
-    
+
   allProjects: ->
     # returns all projects, shuffled
     allProjects = []
@@ -108,7 +108,7 @@ self =
     categories = allProjectGroups
     categoryUrls = _.map categories, (category) ->
       category.url
-      
+
   api: ->
     persistentToken = self.user.cachedUser()?.persistentToken
     if persistentToken
@@ -119,13 +119,13 @@ self =
     else
       axios.create
         baseURL: 'https://api.gomix.com/'
-        
+
   storeLocal: (key, value) ->
     try
       window.localStorage[key] = JSON.stringify value
     catch
       console.warn "Could not save to localStorage. (localStorage is disabled in private Safari windows)"
-      
+
   login: (provider, code) ->
     console.log provider, code
     authURL = "/authenticate/"
@@ -157,7 +157,7 @@ self =
     queryStringKeys = _.keys queryString # ['q', 'blah']
     if (url is 'search') and (_.contains queryStringKeys, 'q')
       true
-      
+
 
 self.overlay = Overlay self
 self.tracking = tracking self
