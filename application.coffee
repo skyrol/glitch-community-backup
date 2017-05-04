@@ -2,14 +2,23 @@ Observable = require 'o_0'
 _ = require 'underscore'
 axios = require 'axios'
 
-curated = require "./curated"
+# curated
+curated =
+  featured: require "./curated/featured"
+  categories: require "./curated/categories"
+  collections: require "./curated/collections"
+  partners: require "./curated/partners"
+  projects: require "./curated/projects"
+
+allProjectGroups = curated.categories.concat curated.collections.concat curated.partners
+
 tracking = require "./tracking"
 user = require "./user"
 
 Overlay = require "./presenters/overlay"
 Search = require "./presenters/search"
 
-self = 
+self =
 
   # overlays
   overlayVisible: Observable false
@@ -28,7 +37,7 @@ self =
   signInPopVisibleOnHeader: Observable false
   signInPopVisibleOnRecentProjects: Observable false
   userOptionsPopVisible: Observable false
-  
+
   # search
   searchQuery: Observable ""
   searchResultsUsers: Observable []
@@ -45,7 +54,7 @@ self =
       return baseUrl + "/"
     else
       return baseUrl
-  
+
   closeAllPopOvers: ->
     self.signInPopVisibleOnHeader false
     self.signInPopVisibleOnRecentProjects false
@@ -54,26 +63,35 @@ self =
   showProjectOverlay: (project) ->
     event.preventDefault()
     self.overlay.showProjectOverlay project
-  
+
   featuredProjects: ->
-    _.shuffle curated.featured()
+    _.shuffle curated.featured
 
   categories: ->
-    homepageCategories = _.filter curated.categories(), (category) ->
+    homepageCategories = _.filter curated.categories, (category) ->
       !category.categoryPageOnly
     _.shuffle homepageCategories
 
-  projectsInCategory: (categoryId) ->
-    projectsInCategory = _.filter curated.projects(), (project) ->
-      _.contains project.categoryIds, categoryId
+  allProjects: ->
+    # returns all projects, shuffled
+    allProjects = []
+    for category, projects of curated.projects
+      allProjects = allProjects.concat projects
+    _.shuffle allProjects
+
+  projectsInCategory: (category) ->
+    # returns all projects in a category domain, shuffled
+    projectsInCategory = require("./curated/projects")[category]
     _.shuffle projectsInCategory
 
   selectedCategories: ->
+    # returns 3 shuffled categories to display in full on the homepage
     shuffledCategories = self.categories()
     shuffledCategories.slice(0, 3)
 
-  projectsInSelectedCategory: (categoryId) ->
-    shuffledProjects = self.projectsInCategory categoryId
+  projectsInSelectedCategory: (category) ->
+    # returns 3 projects for index page category box, shuffled
+    shuffledProjects = self.projectsInCategory category
     shuffledProjects.slice(0, 3)
 
   isCategoryUrl: (url) ->
@@ -81,14 +99,16 @@ self =
       true
 
   getCategoryFromUrl: (url) ->
-    category = _.findWhere curated.categories(),
+    # in this function, categories include partner and collection pages
+    category = _.findWhere allProjectGroups,
       url: url
 
   categoryUrls: ->
-    categories = curated.categories()
+    # in this function, categories include partner and collection pages
+    categories = allProjectGroups
     categoryUrls = _.map categories, (category) ->
       category.url
-      
+
   api: ->
     persistentToken = self.user.cachedUser()?.persistentToken
     if persistentToken
@@ -99,13 +119,13 @@ self =
     else
       axios.create
         baseURL: 'https://api.gomix.com/'
-        
+
   storeLocal: (key, value) ->
     try
       window.localStorage[key] = JSON.stringify value
     catch
       console.warn "Could not save to localStorage. (localStorage is disabled in private Safari windows)"
-      
+
   login: (provider, code) ->
     console.log provider, code
     authURL = "/authenticate/"
@@ -137,7 +157,7 @@ self =
     queryStringKeys = _.keys queryString # ['q', 'blah']
     if (url is 'search') and (_.contains queryStringKeys, 'q')
       true
-      
+
 
 self.overlay = Overlay self
 self.tracking = tracking self
