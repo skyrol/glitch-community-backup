@@ -5,25 +5,24 @@
 application = require './application.coffee'
 qs = require 'querystringify'
 queryString = qs.parse window.location.search
-# todo: replace normalizeSlashes
-# normalizeSlashes = require 'normalize-slashes'
 
 IndexTemplate = require "./templates/pages/index"
 CategoryPage = require "./presenters/category-page"
 Search = require "./presenters/search"
 errorPageTemplate = require "./templates/pages/error-page"
 
-
-console.log "route route is", route
-# normalizedRoute = normalizeSlashes route
 normalizedRoute = route.replace(/^\/|\/$/g, "")
-console.log "route is #{normalizedRoute}"
+console.log "normalizedRoute is #{normalizedRoute}"
 console.log "query strings are", queryString
 console.log "application is", application
 console.log "🌈 isSignedIn", application.user.isSignedIn()
 
 # client-side routing:
 Promise.resolve()
+.then ->
+  if document.location.hash.startsWith "#!/"
+    document.location = "https://glitch.com/edit/" + document.location.hash
+    return
 .then ->
   if normalizedRoute.startsWith "login/"
     application.login normalizedRoute.substring("login/".length), queryString.code
@@ -35,10 +34,14 @@ Promise.resolve()
   errorPage = errorPageTemplate application
   application.user.getUserRecentProjects()
   
+  if normalizedRoute is "index.html"
+    normalizedRoute = ""
+  
   if normalizedRoute is ""
     document.body.appendChild index
 
   else if application.isCategoryUrl(normalizedRoute)
+    console.log 'hi'
     category = application.getCategoryFromUrl normalizedRoute
     categoryPage = CategoryPage(application, category).template()
     document.body.appendChild categoryPage
