@@ -21,6 +21,18 @@ module.exports = (application) ->
     projectId: ->
       application.overlayProject()?.id
 
+    currentUserIsInProject: (project) ->
+      currentUserId = application.user.userId()
+      project.users?.forEach (user) ->
+        if user.id is currentUserId
+          application.currentUserIsInProject true
+
+    hiddenIfCurrentUserInProject: ->
+      'hidden' if application.currentUserIsInProject()
+
+    hiddenUnlessCurrentUserInProject: ->
+      'hidden' unless application.currentUserIsInProject()
+
     projectUsers: ->
       application.overlayProject().users
 
@@ -29,13 +41,13 @@ module.exports = (application) ->
         "https://cdn.gomix.com/project-avatar/#{self.projectId()}.png"
 
     showLink: -> 
-      "https://#{self.projectDomain()}.gomix.me" # change to glitch later
+      "https://#{self.projectDomain()}.glitch.me"
 
     editorLink: ->
-      "https://gomix.com/#!/project/#{self.projectDomain()}" # change to glitch later
+      "https://glitch.com/edit/#!/project/#{self.projectDomain()}"
 
     remixLink: ->
-      "https://gomix.com/#!/remix/#{self.projectDomain()}/#{self.projectId()}" # change to glitch later
+      "https://glitch.com/edit/#!/remix/#{self.projectDomain()}/#{self.projectId()}"
 
     overlayButtonClickHandler: (event) ->
       application.tracking.init event
@@ -62,43 +74,40 @@ module.exports = (application) ->
       'hidden' if application.overlayReadmeLoaded()
 
     showProjectOverlay: (project) ->
+      application.currentUserIsInProject false
       application.overlayReadme ""
       application.overlayVisible true
       application.overlayReadmeLoaded false
       application.overlayReadmeError false
       application.overlayTemplate "project"
       application.overlayProject project
+      self.currentUserIsInProject project
       self.getProjectReadme project
-      history.replaceState(null, null, "#{application.normalizedBaseUrl()}/~#{project.domain}")
+      history.replaceState(null, null, "#{application.normalizedBaseUrl()}~#{project.domain}")
 
     showVideoOverlay: ->
       application.overlayVisible true
       application.overlayTemplate "video"
 
+    # used for direct /~my-project urls
     showProjectOverlayForProject: (projectDomain) ->
       application.overlayVisible true
       application.overlayReadmeLoaded false
       application.overlayTemplate 'project'
-      projectInfoUrl = "https://api.gomix.com/projects/#{projectDomain}"
+      projectInfoUrl = "https://api.glitch.com/projects/#{projectDomain}"
       axios.get projectInfoUrl,
         cancelToken: source.token
       .then (response) ->
-        console.log 'response', response
-        project = {
-          id: response.data.id
-          domain: response.data.domain
-        }
-        console.log project
-        self.showProjectOverlay project
+        self.showProjectOverlay response.data
       .catch (error) ->
         console.error "showProjectOverlayIfPermalink", error
         self.showReadmeError()
 
     newRoute: ->
-      ret = "#{application.normalizedBaseUrl()}#{route}"
+      newRoute = "#{application.normalizedBaseUrl()}"
       if application.searchQuery()
-        ret += "?q=#{application.searchQuery()}"
-      ret
+        newRoute += "?q=#{application.searchQuery()}"
+      newRoute
         
     hideOverlay: ->
       application.overlayVisible false
@@ -107,7 +116,7 @@ module.exports = (application) ->
       history.replaceState(null, null, self.newRoute())
       
     getProjectReadme: (project) ->
-      readmeUrl = "https://api.gomix.com/projects/#{self.projectId()}/readme" # change to glitch later
+      readmeUrl = "https://api.glitch.com/projects/#{self.projectId()}/readme" # change to glitch later
       axios.get readmeUrl,
         cancelToken: source.token
       .then (response) ->
