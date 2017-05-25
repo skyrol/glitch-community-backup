@@ -7,14 +7,19 @@
 - CategoryPresenter = require "../../presenters/category"
 - OverlayPresenter = require "../../presenters/overlay"
 - RecentProjectsPresenter = require "../../presenters/recent-projects"
+- CtaButtonsPresenter = require "../../presenters/cta-buttons"
+- HelpingPresenter = require "../../presenters/helping"
 
 .content
   = HeaderPresenter(this).template
-  
-  main(role="main")
 
-    - # TODO ppl asking for help section (seen by all)
-  
+  main(role="main")
+    - console.log 'render index page'
+
+    = CtaButtonsPresenter(this).template
+
+    = HelpingPresenter(this).template(3)
+
     - if @.user.cachedUser()
       = RecentProjectsPresenter(this).template
 

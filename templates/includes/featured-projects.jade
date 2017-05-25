@@ -5,19 +5,21 @@
 section.featured-projects
 
   h2
-    b Featured: 
-    a(href="/google") Google Apps →
-  p Get started with your own apps by building on Google's developer APIs.
+    b Featured Apps 
   ul
     - application = @
     - @featuredProjects().forEach (project) ->
 
       li
-        = ProjectUsersPresenter(@, project).template
-
-        - showProjectOverlay = -> application.showProjectOverlay project
-        a(href="/~#{project.domain}")
-          .featured-container(click=showProjectOverlay data-track="featured project" data-track-label=project.name)
-            img.featured(width=30 height=30 src=project.img)
-            p.project-name= project.name
+        - if project.link
+          a(href=project.link)
+            .featured-container(data-track="featured project" data-track-label=project.name)
+              img.featured(width=30 height=30 src=project.img)
+              p.project-name= project.name
+        - else
+          - showProjectOverlay = -> application.showProjectOverlay project
+          a(href="/~#{project.domain}")
+            .featured-container(click=showProjectOverlay data-track="featured project" data-track-label=project.name)
+              img.featured(width=30 height=30 src=project.img)
+              p.project-name= project.name
 

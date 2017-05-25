@@ -8,6 +8,7 @@ queryString = qs.parse window.location.search
 
 IndexTemplate = require "./templates/pages/index"
 CategoryPage = require "./presenters/category-page"
+HelpingPage = require "./presenters/helping-page"
 Search = require "./presenters/search"
 errorPageTemplate = require "./templates/pages/error-page"
 
@@ -36,12 +37,17 @@ Promise.resolve()
   
   if normalizedRoute is "index.html"
     normalizedRoute = ""
-  
+
   if normalizedRoute is ""
     document.body.appendChild index
 
+  else if application.isHelpingUrl(normalizedRoute)
+    console.log 'normalizedRoute2 helping -o k'
+    helpingPage = HelpingPage(application).template()
+    document.body.appendChild helpingPage
+    document.title = "Helping"
+    
   else if application.isCategoryUrl(normalizedRoute)
-    console.log 'hi'
     category = application.getCategoryFromUrl normalizedRoute
     categoryPage = CategoryPage(application, category).template()
     document.body.appendChild categoryPage
@@ -51,10 +57,10 @@ Promise.resolve()
     projectDomain = application.removeFirstCharacter normalizedRoute
     document.body.appendChild index
     application.overlay.showProjectOverlayForProject projectDomain
-
+    
   # else if application.isUserProfileUrl(normalizedRoute)
   #   document.body.append '🙋 hello im a @profile page'
-
+  
   else if application.isSearchUrl(normalizedRoute, queryString)
     application.searchQuery queryString.q
     searchPage = Search(application).template()
