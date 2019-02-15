@@ -15,7 +15,7 @@
 		"hamlet.coffee": "0.7.6",
 		"coffee-script": "^1.12.4",
 		"body-parser": "^1.16.1",
-		"coffeeify": "^2.1.0",
+		"coffeeify": "^3.0.0",
 		"stylus": "^0.54.5",
 		"through2": "^2.0.3",
 		"underscore": "^1.8.3",
