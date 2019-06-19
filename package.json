@@ -24,7 +24,7 @@
 		"o_0": "^0.3.8",
 		"markdown-it-sanitizer": "^0.4.3",
 		"axios": "^0.15.3",
-		"querystringify": "^0.0.4",
+		"querystringify": "^2.0.0",
 		"hamlet-cli": "^0.7.0-pre.1",
 		"exorcist": "^0.4.0",
 		"uglify-js": "^2.8.4",
