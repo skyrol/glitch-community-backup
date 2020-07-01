@@ -17,7 +17,7 @@
 		"body-parser": "^1.16.1",
 		"coffeeify": "^2.1.0",
 		"stylus": "^0.54.5",
-		"through2": "^2.0.3",
+		"through2": "^4.0.0",
 		"underscore": "^1.8.3",
 		"markdown-it": "^8.3.0",
 		"ejs": "^2.5.6",
